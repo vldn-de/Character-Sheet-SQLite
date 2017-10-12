@@ -1,0 +1,44 @@
+#loginName {
+height:40px;
+}
+body {
+ padding:  1em;
+  line-height:  1.25;
+ font-family:  "Garamond", serif; 
+}
+legend{
+font-size:13px;
+font-weight: bold;
+}
+fieldset {
+background-color:#FEFEFE !important;
+}
+textarea,
+input[type]{
+  width: 100%;
+}
+*, *:before, *:after {box-sizing:  border-box !important;}
+article {
+ -moz-column-width: 20em;
+ -webkit-column-width: 20em;
+ -moz-column-gap: 1em;
+ -webkit-column-gap: 1em; 
+  
+}
+.linebox {
+  width:100%;
+  border-style: none none solid ! important;
+  border-color: -moz-use-text-color -moz-use-text-color black ! important;
+  border-width: medium medium 1px ! important;
+  background: transparent none repeat scroll 0% ! important;
+  outline-color: invert ! important;
+  outline-style: none ! important;
+  outline-width: medium ! important;
+  text-align: left ! important;
+}
+section {
+ display: inline-block;
+ margin:  0.25rem;
+ padding:  0rem;
+ width:  100%; 
+}
