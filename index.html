@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="de">
+   <head>
+      <title>Character Sheet</title>
+      <link rel="stylesheet" href="src/charactersheet.css">
+      <script src="src/jquery-3.2.1.js"></script>
+      <script src="src/charactersheet.js"></script>
+   </head>
+   <body onload="init()">
+      <div id="login" style="margin: 20px 20px auto; display: none;">
+         <input placeholder="Login" id="loginName" onkeypress="handle(event)" type="text">
+      </div>
+      <div id="wrapper" class="wrapper">
+      <article>
+         <section>
+            <input value="Save" id="save" style="" onclick="save()" type="button"><br>
+            <br>
+            <table style="text-align: left; width: 100%;" border="0" cellpadding="0" cellspacing="0">
+               <tbody>
+                  <tr>
+                     <td><small><small>Name</small></small><br>
+                     </td>
+                     <td><small><small>Heimatplanet</small></small><br>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td><input class="linebox player" type="text"></td>
+                     <td><input class="linebox size" type="text"></td>
+                  </tr>
+                  <tr>
+                     <td><small><small>Geschwindigkeit</small></small><br>
+                     </td>
+                     <td><small><small>Geschlecht</small></small><br>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td><input class="linebox speed" type="text"></td>
+                     <td><input class="linebox gender" type="text"></td>
+                  </tr>
+                  <tr>
+                     <td><small><small>Gr&ouml;&szlig;e</small></small><br>
+                     </td>
+                     <td><small><small>Gewicht</small></small><br>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td><input class="linebox height" type="text"></td>
+                     <td><input class="linebox weight" type="text"></td>
+                  </tr>
+               </tbody>
+            </table>
+         </section>
+         <section>
+            <fieldset>
+               <legend><big>Ability Score</big></legend>
+               <table style="width: 100%;">
+                  <tbody>
+                     <tr>
+                        <td><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>Score</small></div>
+                           <small>
+                           </small>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>Modifier</small></div>
+                           <small>
+                           </small>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="background: black none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;"><b style="color: white;">STR</b></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="str" type="text"></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="strm" type="text"></td>
+                     </tr>
+                     <tr style="">
+                        <td style="background: black none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;"><b style="color: white;">DEX</b></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="dex" type="text"></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="dexm" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td style="background: black none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;"><b style="color: white;">CON</b></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="con" type="text"></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="conm" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td style="background: black none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;"><b style="color: white;">INT</b></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="int" type="text"></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="intm" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td style="background: black none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;"><b style="color: white;">WIS</b></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="wis" type="text"></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="wism" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td style="background: black none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;"><b style="color: white;">CHA</b></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="cha" type="text"></td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="cham" type="text"></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </fieldset>
+         </section>
+         <section>
+            <fieldset>
+               <legend><big>Leben und Schild</big>
+               </legend>
+               <table style="width: 100%;">
+                  <tbody>
+                     <tr>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>Lebenspunkte</small></div>
+                           <small>
+                           </small>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>Schild</small></div>
+                           <small>
+                           </small>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left;"><small><small>TOTAL</small></small></td>
+                        <td style="text-align: center;"><input maxlength="6" size="3" class="totalhp" type="text"></td>
+                        <td style="text-align: center;"><input maxlength="6" size="3" class="totalresolve" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left;"><small><small>AKTUELL</small></small></td>
+                        <td style="text-align: center;"><input maxlength="6" size="3" class="currenthp" type="text"></td>
+                        <td style="text-align: center;"><input maxlength="6" size="3" class="currentresolve" type="text"></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </fieldset>
+         </section>
+         <section>
+            <fieldset>
+               <legend><big>Initiative</big></legend>
+               <table style="width: 100%;">
+                  <tbody>
+                     <tr>
+                        <td style="text-align: left;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>Total</small></div>
+                           <small>
+                           </small>
+                        </td>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>DEX Mod</small></div>
+                           <small>
+                           </small>
+                        </td>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <div class="smallfont"><small>Misc Mod</small></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left;"><input maxlength="3" size="1" class="inittotal" type="text"></td>
+                        <td style="text-align: center;" class="mfont">=</td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="dexm" type="text"></td>
+                        <td style="text-align: center;" class="mfont">+</td>
+                        <td style="text-align: center;"><input maxlength="3" size="1" class="initmiscmod" type="text"></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </fieldset>
+         </section>
+         <section>
+            <fieldset>
+               <legend><big>R&uuml;stungsklasse</big></legend>
+               <table style="width: 100%;">
+                  <tbody>
+                     <tr>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>Total</small></div>
+                           <small>
+                           </small>
+                        </td>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <div class="smallfont"><small>R&uuml;stungsbonus</small></div>
+                        </td>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <div class="smallfont"><small>STR Mod.</small></div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="background: black none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;"><b style="color: white;">AC</b></td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="EACtotal" type="text"></td>
+                        <td style="text-align: center;" class="mfont">&nbsp;10&nbsp; </td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="EACarmor" type="text"></td>
+                        <td style="text-align: center;" class="mfont"> + </td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="dexm" type="text"></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </fieldset>
+         </section>
+         <section>
+            <fieldset>
+               <legend><big>Trefferbonus</big></legend>
+               <table style="width: 100%;">
+                  <tbody>
+                     <tr>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>Total</small></div>
+                           <small>
+                           </small>
+                        </td>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>BAB</small></div>
+                           <small>
+                           </small>
+                        </td>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>STR Mod</small></div>
+                           <small>
+                           </small>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left;"><small>NAHKAMPF&nbsp;</small></td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="meleetotal" type="text"></td>
+                        <td style="text-align: center;" class="mfont">=</td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="BABmelee" type="text"></td>
+                        <td style="text-align: center;" class="mfont">+</td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="strm" type="text"></td>
+                     </tr>
+                     <tr>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>Total</small></div>
+                           <small>
+                           </small>
+                        </td>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>BAB</small></div>
+                           <small>
+                           </small>
+                        </td>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>DEX Mod</small></div>
+                           <small>
+                           </small>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="text-align: left;"><small>FERNKAMPF</small></td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="rangetotal" type="text"></td>
+                        <td style="text-align: center;" class="mfont">=</td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="BABrange" type="text"></td>
+                        <td style="text-align: center;" class="mfont">+</td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="dexm" type="text"></td>
+                     </tr>
+                     <tr>
+                     </tr>
+                  </tbody>
+               </table>
+            </fieldset>
+         </section>
+         <section>
+            <fieldset>
+               <legend><big>Saving Throws</big></legend>
+               <table style="width: 100%;">
+                  <tbody>
+                     <tr>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>Total</small></div>
+                           <small>
+                           </small>
+                        </td>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <div class="smallfont"><small>Base Save</small></div>
+                        </td>
+                        <td style="text-align: center;"><br>
+                        </td>
+                        <td style="text-align: center;">
+                           <small>
+                           </small>
+                           <div class="smallfont"><small>Mod.</small></div>
+                           <small>
+                           </small>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td style="background: black none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;"><b style="color: white;">FORT</b></td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="forttotal" type="text"></td>
+                        <td style="text-align: center;" class="mfont"> = </td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="fortbase" type="text"></td>
+                        <td style="text-align: center;" class="mfont"> + </td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="conm" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td style="background: black none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;"><b style="color: white;">REFLEX</b></td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="reftotal" type="text"></td>
+                        <td style="text-align: center;" class="mfont"> = </td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="refbase" type="text"></td>
+                        <td style="text-align: center;" class="mfont"> + </td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="dexm" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td style="background: black none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;"><b style="color: white;">WILL</b></td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="willtotal" type="text"></td>
+                        <td style="text-align: center;" class="mfont"> = </td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="willbase" type="text"></td>
+                        <td style="text-align: center;" class="mfont"> + </td>
+                        <td style="text-align: center;"><input maxlength="4" size="3" class="wism" type="text"></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </fieldset>
+         </section>
+         <section>
+            <fieldset>
+               <legend><big>Skills</big>
+               </legend>
+               <div class="skills">
+                  <table style="width: 100%;">
+                     <tbody>
+                        <tr>
+                           <td style="">
+                           </td>
+                           <td style="">
+                           </td>
+                           <td style="">
+                              <small>
+                              </small>
+                              <div class="smallfont"><small>Total</small></div>
+                              <small>
+                              </small>
+                           </td>
+                           <td style="text-align: center;">
+                           </td>
+                           <td style="">
+                              <small>
+                              </small>
+                              <div class="smallfont"><small>Ranks</small></div>
+                              <small>
+                              </small>
+                           </td>
+                           <td style="text-align: center;">
+                           </td>
+                           <td style="">
+                              <div class="smallfont"><small>Ability</small>&nbsp;</div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="acrobaticsCS" type="checkbox"></td>
+                           <td style=""><small>AKROBATIK
+                              (DEX)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="acrobaticstotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="acrobaticsranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="dexm" type="text"></td>
+                        </tr>
+						<tr>
+                           <td style="text-align: left;"><input class="athleticsCS" type="checkbox"></td>
+                           <td style=""><small>ALLGEMEINWISSEN
+                              (WIS)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="athleticstotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="athleticsranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="wism" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="bluffCS" type="checkbox"></td>
+                           <td style=""><small>BLUFF (CHA)</small></td>
+                           <td style=""><input maxlength="4" size="3" class="blufftotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="bluffranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="cham" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="computersCS" type="checkbox"></td>
+                           <td style=""><small>INFORMATIK (INT)</small></td>
+                           <td style=""><input maxlength="4" size="3" class="computerstotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="computersranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="intm" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="cultureCS" type="checkbox"></td>
+                           <td style=""><small>KULTUR/SPRACHE (INT)</small></td>
+                           <td style=""><input maxlength="4" size="3" class="culturetotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="cultureranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="intm" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="diplomacyCS" type="checkbox"></td>
+                           <td style=""><small>DIPLOMATIE
+                              (CHA)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="diplomacytotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="diplomacyranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="cham" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="disguiseCS" type="checkbox"></td>
+                           <td style=""><small>VERKLEIDUNG
+                              (CHA)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="disguisetotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="disguiseranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="cham" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="engineeringCS" type="checkbox"></td>
+                           <td style=""><small>MASCHINENBAU
+                              (INT)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="engineeringtotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="engineeringranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="intm" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="intimidateCS" type="checkbox"></td>
+                           <td style=""><small>EINSCH&Uuml;CHTERN
+                              (CHA)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="intimidatetotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="intimidateranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="cham" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="lifescienceCS" type="checkbox"></td>
+                           <td style=""><small>BIOWISSENSCHAFT
+                              (INT)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="lifesciencetotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="lifescienceranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="intm" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="medicineCS" type="checkbox"></td>
+                           <td style=""><small>MEDIZIN (INT)</small></td>
+                           <td style=""><input maxlength="4" size="3" class="medicinetotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="medicineranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="intm" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="mysticismCS" type="checkbox"></td>
+                           <td style=""><small>PSYCHOKINETIK (WIS)</small></td>
+                           <td style=""><input maxlength="4" size="3" class="mysticismtotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="mysticismranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="wism" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="perceptionCS" type="checkbox"></td>
+                           <td style=""><small>WAHRNEHMUNG
+                              (WIS)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="perceptiontotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="perceptionranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="wism" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="pilotingCS" type="checkbox"></td>
+                           <td style=""><small>PILOTIEREN/STEUERN
+                              (DEX)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="pilotingtotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="pilotingranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="dexm" type="text"></td>
+                        </tr>
+
+                        <tr>
+                           <td style="text-align: left;"><input class="physicalscienceCS" type="checkbox"></td>
+                           <td style=""><small>PHYSIK (INT)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="physicalsciencetotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="physicalscienceranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="intm" type="text"></td>
+                        </tr>
+
+                        <tr>
+                           <td style="text-align: left;"><input class="sensemotiveCS" type="checkbox"></td>
+                           <td style=""><small>SENSE MOTIVE
+                              (WIS)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="sensemotivetotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="sensemotiveranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="wism" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="sleightofhandCS" type="checkbox"></td>
+                           <td style=""><small>TASCHENSPIELEREI
+                              (DEX)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="sleightofhandtotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="sleightofhandranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="dexm" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="stealthCS" type="checkbox"></td>
+                           <td style=""><small>VERSTECKEN
+                              (DEX)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="stealthtotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="stealthranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="dexm" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><input class="survivalCS" type="checkbox"></td>
+                           <td style=""><small>&Uuml;BERLEBENSKUNST
+                              (WIS)</small>
+                           </td>
+                           <td style=""><input maxlength="4" size="3" class="survivaltotal" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="survivalranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="wism" type="text"></td>
+                        </tr>
+                        
+                        <tr>
+                           <td style="text-align: left;"><input class="profession0CS" type="checkbox"></td>
+                           <td style=""><small>SPEZIALISIERUNG</small></td>
+                           <td style=""><input maxlength="4" size="3" class="profession0total" type="text"></td>
+                           <td style="text-align: center;">=</td>
+                           <td style=""><input maxlength="4" size="3" class="profession0ranks" type="text"></td>
+                           <td style="text-align: center;">+</td>
+                           <td style=""><input maxlength="4" size="3" class="profession0mod" type="text"></td>
+                        </tr>
+                        <tr>
+                           <td style="text-align: left;"><br>
+                           </td>
+                           <td style=""><small><input style="width: 100%;" class="linebox profession0name" type="text"></small></td>
+                           <td style=""><br>
+                           </td>
+                           <td style="text-align: center;"><br>
+                           </td>
+                           <td style=""><br>
+                           </td>
+                           <td style="text-align: center;"><br>
+                           </td>
+                           <td style=""><br>
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </fieldset>
+         </section>
+         <br>
+         <section>
+            <fieldset style="">
+               <legend><big>F&auml;higkeiten</big></legend>
+               <input class="linebox abilities0" type="text"> <input class="linebox abilities1" type="text"> <input class="linebox abilities2" type="text"> <input class="linebox abilities3" type="text"> <input class="linebox abilities4" type="text"> <input class="linebox abilities5" type="text"> <input class="linebox abilities6" type="text"> <input class="linebox abilities7" type="text"> <input class="linebox abilities8" type="text"> <input class="linebox abilities9" type="text"> 
+            </fieldset>
+         </section>
+         <br>
+         <section>
+            <fieldset>
+               <legend><big>Credits</big><br>
+               </legend>
+               <input class="linebox credits" type="text">
+            </fieldset>
+         </section>
+         <section>
+            <fieldset>
+               <legend><big>Inventar</big></legend>
+               <table style="width: 100%;">
+                  <tbody>
+                     <tr>
+                        <td>
+                        </td>
+                        <td>
+                           <div class="smallfont">
+                           </div>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment0name" type="text"></td>
+                        <td><input size="1" class="linebox equipment0bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment1name" type="text"></td>
+                        <td><input size="1" class="linebox equipment1bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment2name" type="text"></td>
+                        <td><input size="1" class="linebox equipment2bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment3name" type="text"></td>
+                        <td><input size="1" class="linebox equipment3bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment4name" type="text"></td>
+                        <td><input size="1" class="linebox equipment4bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment5name" type="text"></td>
+                        <td><input size="1" class="linebox equipment5bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment6name" type="text"></td>
+                        <td><input size="1" class="linebox equipment6bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment7name" type="text"></td>
+                        <td><input size="1" class="linebox equipment7bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment8name" type="text"></td>
+                        <td><input size="1" class="linebox equipment8bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment9name" type="text"></td>
+                        <td><input size="1" class="linebox equipment9bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment10name" type="text"></td>
+                        <td><input size="1" class="linebox equipment10bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment11name" type="text"></td>
+                        <td><input size="1" class="linebox equipment11bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment12name" type="text"></td>
+                        <td><input size="1" class="linebox equipment12bulk" type="text"></td>
+                     </tr>
+                     <tr>
+                        <td><input class="linebox equipment13name" type="text"></td>
+                        <td><input size="1" class="linebox equipment13bulk" type="text"></td>
+                     </tr>
+                  </tbody>
+               </table>
+            </fieldset>
+         </section>
+         <section>
+            <fieldset>
+               <legend><big>Notizen</big></legend>
+               <textarea class="linebox abilities24" style="height:100px" ></textarea>
+            </fieldset>
+         </section>
+      </article>
+      </div>
+   </body>
+</html>
